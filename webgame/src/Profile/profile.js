@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import pfp from "../assets/profile.jpg";
 import { DoughnutGraph } from "./Circular";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./profile.css";
 import Questionnaire from "../Quiz/Questionnaire";
 import Popup from "reactjs-popup";
@@ -11,48 +11,61 @@ export default function Profile() {
     message: "",
     username: "",
     age: "",
+    score: 0,
+    hanoimoves: 0,
+    hanoitime: 0,
+    eightQueen: 0,
+    numberpuzzlemoves: 0,
+    numberpuzzletime: 0,
+    memoryright: 0,
+    memorywrong: 0,
+    memorytime: 0,
   });
   const [renderQuiz, setRenderQuiz] = useState(false);
+  const [showNewUserPrompt, setShowNewUserPrompt] = useState(false);
   const [memory, setMemory] = useState(0);
   const [focus, setFocus] = useState(0);
   const [patience, setPatience] = useState(0);
   const [hyperactivity, setHyperactivity] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null); // Track which card is hovered
   const [hoveredButton, setHoveredButton] = useState(null); // Track which button is hovered
+  const navigate = useNavigate();
 
   const quizSectionRef = useRef(null);
 
-  const refreshProfileData = () => {
-    fetch("http://localhost:8000/profile")
-      .then((res) => res.json())
-      .then((data) => {
-        setUserData({
-          message: data.message ?? "",
-          username: data.username ?? "",
-          age: data.age ?? 0,
-          score: data.score ?? 0,
-          hanoimoves: data.hanoimoves ?? 0,
-          hanoitime: data.hanoitime ?? 0,
-          eightQueen: data.eightqueen ?? 0,
-          numberpuzzlemoves: data.numberpuzzlemoves ?? 0,
-          numberpuzzletime: data.numberpuzzletime ?? 0,
-          memoryright: data.memoryright ?? 0,
-          memorywrong: data.memorywrong ?? 0,
-          memorytime: data.memorytime ?? 0,
-        });
-      });
-  };
-
   useEffect(() => {
-    // Initial fetch
-    refreshProfileData();
+    // Check if user is logged in
+    const profileData = localStorage.getItem("profileData");
+    if (!profileData) {
+      navigate("/login");
+      return;
+    }
 
-    // Set up periodic refresh every 5 seconds
-    const intervalId = setInterval(refreshProfileData, 5000);
+    try {
+      // Set initial data from localStorage
+      const initialData = JSON.parse(profileData);
+      setUserData((prevData) => ({
+        ...prevData,
+        ...initialData,
+      }));
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+      // Check if user is new (score is 0) and hasn't seen the prompt before
+      const hasSeenPrompt = localStorage.getItem(
+        `hasSeenPrompt_${initialData.username}`
+      );
+      if (initialData.score === 0 && !hasSeenPrompt) {
+        setShowNewUserPrompt(true);
+      }
+
+      // Set up periodic refresh
+      const intervalId = setInterval(refreshProfileData, 5000);
+      return () => clearInterval(intervalId);
+    } catch (error) {
+      console.error("Error parsing profile data:", error);
+      localStorage.removeItem("profileData");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     if (renderQuiz && quizSectionRef.current) {
@@ -60,9 +73,24 @@ export default function Profile() {
     }
   }, [renderQuiz]);
 
+  const handleQuizStart = () => {
+    setShowNewUserPrompt(false);
+    setRenderQuiz(true);
+    // Mark that user has seen the prompt
+    localStorage.setItem(`hasSeenPrompt_${userData.username}`, "true");
+    if (quizSectionRef.current) {
+      quizSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleQuizSkip = () => {
+    setShowNewUserPrompt(false);
+    // Mark that user has seen the prompt
+    localStorage.setItem(`hasSeenPrompt_${userData.username}`, "true");
+  };
+
   const handleQuiz = () => {
     setRenderQuiz(!renderQuiz);
-    // Refresh profile data after quiz completion
     if (!renderQuiz) {
       refreshProfileData();
     }
@@ -191,6 +219,20 @@ export default function Profile() {
     transition: "background-color 0.3s ease", // Smooth hover effect
   });
 
+  const refreshProfileData = () => {
+    fetch("http://localhost:8000/profile")
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData((prevData) => ({
+          ...prevData,
+          ...data,
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
+      });
+  };
+
   return (
     <div
       className="container-fluid"
@@ -199,6 +241,63 @@ export default function Profile() {
         color: "#FFFFFF", // White text for contrast
       }}
     >
+      {/* New User Questionnaire Prompt */}
+      <Popup
+        open={showNewUserPrompt}
+        modal
+        closeOnDocumentClick={false}
+        contentStyle={{
+          backgroundColor: "#2D2D2D",
+          border: "2px solid #CFFF47",
+          borderRadius: "10px",
+          padding: "20px",
+          color: "#FFFFFF",
+          width: "80%",
+          maxWidth: "500px",
+        }}
+      >
+        <div className="text-center">
+          <h3 style={{ color: "#CFFF47", marginBottom: "20px" }}>
+            Welcome to AiDyHD!
+          </h3>
+          <p style={{ marginBottom: "20px" }}>
+            To get started, we recommend taking our initial questionnaire to
+            assess your current state. This will help us provide you with a
+            personalized experience.
+          </p>
+          <div className="d-flex justify-content-center gap-3">
+            <button
+              onClick={handleQuizStart}
+              style={{
+                backgroundColor: "#CFFF47",
+                color: "#333333",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Take Questionnaire
+            </button>
+            <button
+              onClick={handleQuizSkip}
+              style={{
+                backgroundColor: "transparent",
+                color: "#CFFF47",
+                border: "2px solid #CFFF47",
+                padding: "10px 20px",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Skip for Now
+            </button>
+          </div>
+        </div>
+      </Popup>
+
       <div className="row p-5">
         <div
           className="col-md-6 text-white mx-5 py-3 px-4"
@@ -475,12 +574,7 @@ export default function Profile() {
                   >
                     <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM8 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
                   </svg>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "1.1rem",
-                    }}
-                  >
+                  <span style={{ marginLeft: "10px", fontSize: "1.1rem" }}>
                     {userData.message}
                   </span>
                 </p>
@@ -506,102 +600,6 @@ export default function Profile() {
           <div className="col-md-1"></div>
         </div>
       )}
-      <div className="row justify-content-center">
-        <div
-          className="col-md-8 p-4 lols slide-in"
-          style={getCardStyle("card1")}
-          onMouseEnter={() => handleMouseEnter("card1")}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "600",
-              textAlign: "center",
-            }}
-          >
-            What is ADHD?
-          </div>{" "}
-          <br />
-          <div
-            style={{
-              fontSize: "1rem",
-              lineHeight: "1.6",
-              textAlign: "justify",
-            }}
-          >
-            ADHD is a <i>neurodivergent</i> condition that affects both children
-            and adults worldwide. Symptoms often start in childhood and continue
-            into adulthood, but may look different in adults. ADHD is often
-            associated with <i>hyperactivity</i>, <i>lack of focus</i>, and "
-            <i>disruptive behavior</i>" in school. Young children with ADHD may
-            have difficulties in early education programs or school, including
-            problems with peer relationships, learning, and a higher risk of
-            injuries.
-          </div>
-        </div>
-        <div
-          className="col-md-8 p-4 lols slide-in"
-          style={getCardStyle("card2")}
-          onMouseEnter={() => handleMouseEnter("card2")}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "600",
-              textAlign: "center",
-            }}
-          >
-            Types of ADHD
-          </div>{" "}
-          <br />
-          <div
-            style={{
-              fontSize: "1rem",
-              lineHeight: "1.6",
-              textAlign: "justify",
-            }}
-          >
-            There are broadly three types of ADHD :- <br />
-            <br />▶ Predominantly <i>Inattentive</i> Presentation <br />
-            <br />▶ Predominantly <i>Hyperactive-Impulsive</i> Presentation{" "}
-            <br />
-            <br />▶ <i>Combined</i> Presentation <br /> <br />
-          </div>
-        </div>
-        <div
-          className="col-md-8 p-4 lols slide-in"
-          style={getCardStyle("card3")}
-          onMouseEnter={() => handleMouseEnter("card3")}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "600",
-              textAlign: "center",
-            }}
-          >
-            Causes of ADHD
-          </div>{" "}
-          <br />
-          <div
-            style={{
-              fontSize: "1rem",
-              lineHeight: "1.6",
-              textAlign: "justify",
-            }}
-          >
-            In addition to genetics, scientists are studying other possible
-            causes and risk factors including <i>Brain injury</i>, Exposure to{" "}
-            <i>environmental risks</i> (e.g., lead) during pregnancy or at a
-            young age, <i>Alcohol and tobacco use during pregnancy</i>,{" "}
-            <i>Premature delivery</i> and <i>Low birth weight</i>. Researches
-            are still trying to find the exact cause of ADHD.
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

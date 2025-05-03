@@ -11,5 +11,62 @@
     "numberpuzzlemoves": 0,
     "numberpuzzletime": 15,
     "eightqueen": 0
+  },
+  "atulya": {
+    "password": "rai",
+    "age": "21",
+    "score": 9
+  },
+  "random": {
+    "password": "pass",
+    "age": "12",
+    "score": 0,
+    "memoryright": 8,
+    "memorywrong": 8,
+    "memorytime": 42
+  },
+  "avanish": {
+    "score": 10,
+    "memoryright": 0,
+    "memorywrong": 0,
+    "memorytime": 0,
+    "hanoimoves": 0,
+    "hanoitime": 0,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 0,
+    "eightqueen": 0
+  },
+  "waghmare": {
+    "score": 0,
+    "memoryright": 0,
+    "memorywrong": 0,
+    "memorytime": 0,
+    "hanoimoves": 0,
+    "hanoitime": 0,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 0,
+    "eightqueen": 0
+  },
+  "normal": {
+    "score": 8,
+    "memoryright": 0,
+    "memorywrong": 0,
+    "memorytime": 0,
+    "hanoimoves": 0,
+    "hanoitime": 0,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 0,
+    "eightqueen": 0
+  },
+  "test": {
+    "score": 16,
+    "memoryright": 0,
+    "memorywrong": 0,
+    "memorytime": 0,
+    "hanoimoves": 0,
+    "hanoitime": 0,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 0,
+    "eightqueen": 0
   }
 }

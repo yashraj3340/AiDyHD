@@ -1,62 +1,83 @@
 .vertical-line {
-    border-left: 1px solid #ccc;
-    height: 700px;
-  }
-  
-  .zoom-letters {
-    display: inline-block;
-  }
-  
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateY(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-  }
-  
-  .zoom-letters:hover {
-    animation: shake 0.5s ease-in-out;
+  border-left: 1px solid #ccc;
+  height: 700px;
+}
+
+.zoom-letters {
+  display: inline-block;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
   }
 
-  .age {
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-  
-  .age:hover {
-    transform: scale(1.5);
+  25% {
+    transform: translateX(-5px);
   }
 
-  .lols {
-    transition: transform 0.3s;
-    cursor: default;
+  50% {
+    transform: translateY(5px);
   }
 
-  .lols:hover {
-    transform: scale(1.08);
+  75% {
+    transform: translateX(-5px);
   }
-  @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.zoom-letters:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+.age {
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.age:hover {
+  transform: scale(1.5);
+}
+
+.lols {
+  transition: transform 0.3s;
+  cursor: default;
+}
+
+.lols:hover {
+  transform: scale(1.08);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .slide-in {
-    animation: slideIn 0.8s ease-out;
+  animation: slideIn 0.8s ease-out;
 }
+
 /* Add hover effect for cards */
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition for hover effect */
 }
 
 .card-hover:hover {
-  transform: scale(1.05); /* Slightly enlarge the card */
-  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6); /* Add a glowing effect to the border */
-  border-color: #CFFF47; /* Keep the Electric Lime border */
+  transform: scale(1.05);
+  /* Slightly enlarge the card */
+  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6);
+  /* Add a glowing effect to the border */
+  border-color: #CFFF47;
+  /* Keep the Electric Lime border */
 }
