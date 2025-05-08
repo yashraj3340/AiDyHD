@@ -56,8 +56,13 @@ export default function Training() {
                         <span className="hover-scroll" onMouseEnter={handleScrollDown}>All the best, Champ!</span>
                     </div>
                 </div>
+
+                {/* Easy Games */}
                 <div className="row justify-content-center pt-5">
-                    {/* Card Flip Game (Charcoal) */}
+                    <div className="text-center" style={{ color: '#FFFFFF', fontSize: '2em', marginBottom: '20px' }}>
+                        Easy Games :
+                    </div>
+                    {/* Card Flip Game */}
                     <div
                         className="col-md-5 turns"
                         style={getCardStyle('charcoal', hoveredCard === 'cardFlip')}
@@ -91,7 +96,47 @@ export default function Training() {
                             </div>
                         </div>
                     </div>
-                    {/* Tower of Hanoi (Silver) */}
+                    {/* Dino Run Game */}
+                    <div
+                        className="col-md-5 turns"
+                        style={getCardStyle('charcoal', hoveredCard === 'dinoRun')}
+                        onMouseEnter={() => setHoveredCard('dinoRun')}
+                        onMouseLeave={() => setHoveredCard(null)}
+                        onClick={handleFlip}
+                    >
+                        <div className="front">
+                            <div className='row p-3'>
+                                <div style={{ fontSize: `3em` }}>🦖</div>
+                                <div>DINO RUN GAME</div>
+                            </div>
+                        </div>
+                        <div className="back">
+                            <div className='row p-4'>
+                                <div className='mb-2'>GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>🦖</span></div>
+                                <div style={{ fontSize: `0.5em` }}>
+                                    Dino Run is an endless runner game where you control a dinosaur to avoid obstacles
+                                    and collect points. This game enhances reflexes, hand-eye coordination, and focus.
+                                </div>
+                                <div className='mt-2'>
+                                    <Link
+                                        to='/dinorun'
+                                        className='btn'
+                                        style={getButtonStyle()}
+                                    >
+                                        Let's Play
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Medium Games */}
+                <div className="row justify-content-center pt-5">
+                    <div className="text-center" style={{ color: '#FFFFFF', fontSize: '2em', marginBottom: '20px' }}>
+                        Medium Games :
+                    </div>
+                    {/* Tower of Hanoi */}
                     <div
                         className="col-md-5 turns"
                         style={getCardStyle('silver', hoveredCard === 'towerOfHanoi')}
@@ -126,9 +171,49 @@ export default function Training() {
                             </div>
                         </div>
                     </div>
+                    {/* Chess & Queens Game */}
+                    <div
+                        className="col-md-5 turns"
+                        style={getCardStyle('charcoal', hoveredCard === 'chessQueens')}
+                        onMouseEnter={() => setHoveredCard('chessQueens')}
+                        onMouseLeave={() => setHoveredCard(null)}
+                        onClick={handleFlip}
+                    >
+                        <div className="front">
+                            <div className='row p-3'>
+                                <div style={{ fontSize: `3em` }}>♛</div>
+                                <div>CHESS & QUEENS GAME</div>
+                            </div>
+                        </div>
+                        <div className="back">
+                            <div className='row p-4'>
+                                <div className='mb-2'>GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>♛</span></div>
+                                <div style={{ fontSize: `0.5em` }}>
+                                    The 8 Queens game is a puzzle that involves placing eight chess queens on an
+                                    8×8 chessboard in a way that no two queens threaten each other. This game
+                                    requires careful planning, problem-solving, and spatial awareness. It helps improve
+                                    impulse control and concentration.
+                                </div>
+                                <div className='mt-2'>
+                                    <Link
+                                        to='/eightQueen'
+                                        className='btn'
+                                        style={getButtonStyle()}
+                                    >
+                                        Let's Play
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="row justify-content-center pb-5">
-                    {/* Number Puzzle Game (Silver) */}
+
+                {/* Hard Games */}
+                <div className="row justify-content-center pt-5">
+                    <div className="text-center" style={{ color: '#FFFFFF', fontSize: '2em', marginBottom: '20px' }}>
+                        Hard Games :
+                    </div>
+                    {/* Number Puzzle Game */}
                     <div
                         className="col-md-5 turns"
                         style={getCardStyle('silver', hoveredCard === 'numberPuzzle')}
@@ -163,32 +248,30 @@ export default function Training() {
                             </div>
                         </div>
                     </div>
-                    {/* Chess & Queens Game (Charcoal) */}
+                    {/* Catch the Fish Game */}
                     <div
                         className="col-md-5 turns"
-                        style={getCardStyle('charcoal', hoveredCard === 'chessQueens')}
-                        onMouseEnter={() => setHoveredCard('chessQueens')}
+                        style={getCardStyle('silver', hoveredCard === 'catchFish')}
+                        onMouseEnter={() => setHoveredCard('catchFish')}
                         onMouseLeave={() => setHoveredCard(null)}
                         onClick={handleFlip}
                     >
                         <div className="front">
                             <div className='row p-3'>
-                                <div style={{ fontSize: `3em` }}>♛</div>
-                                <div>CHESS & QUEENS GAME</div>
+                                <div style={{ fontSize: `3em` }}>🐟</div>
+                                <div>CATCH THE FISH GAME</div>
                             </div>
                         </div>
                         <div className="back">
                             <div className='row p-4'>
-                                <div className='mb-2'>GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>♛</span></div>
+                                <div className='mb-2'>GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>🐟</span></div>
                                 <div style={{ fontSize: `0.5em` }}>
-                                    The 8 Queens game is a puzzle that involves placing eight chess queens on an
-                                    8×8 chessboard in a way that no two queens threaten each other. This game
-                                    requires careful planning, problem-solving, and spatial awareness. It helps improve
-                                    impulse control and concentration.
+                                    Catch the Fish is a fun game where you have to catch as many fish as possible
+                                    within a time limit. This game improves reaction time, focus, and hand-eye coordination.
                                 </div>
                                 <div className='mt-2'>
                                     <Link
-                                        to='/eightQueen'
+                                        to='/catchfish'
                                         className='btn'
                                         style={getButtonStyle()}
                                     >
