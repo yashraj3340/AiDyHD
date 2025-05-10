@@ -99,7 +99,7 @@ export default function Training() {
                     {/* Dino Run Game */}
                     <div
                         className="col-md-5 turns"
-                        style={getCardStyle('charcoal', hoveredCard === 'dinoRun')}
+                        style={getCardStyle('silver', hoveredCard === 'dinoRun')}
                         onMouseEnter={() => setHoveredCard('dinoRun')}
                         onMouseLeave={() => setHoveredCard(null)}
                         onClick={handleFlip}
@@ -216,7 +216,7 @@ export default function Training() {
                     {/* Number Puzzle Game */}
                     <div
                         className="col-md-5 turns"
-                        style={getCardStyle('silver', hoveredCard === 'numberPuzzle')}
+                        style={getCardStyle('charcoal', hoveredCard === 'numberPuzzle')}
                         onMouseEnter={() => setHoveredCard('numberPuzzle')}
                         onMouseLeave={() => setHoveredCard(null)}
                         onClick={handleFlip}
@@ -259,7 +259,7 @@ export default function Training() {
                         <div className="front">
                             <div className='row p-3'>
                                 <div style={{ fontSize: `3em` }}>🐟</div>
-                                <div>CATCH THE FISH GAME</div>
+                                <div>FISHERMAN GAME</div>
                             </div>
                         </div>
                         <div className="back">

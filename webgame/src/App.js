@@ -10,6 +10,8 @@ import MemoryGame from './Training/MemoryGame/memorygame';
 import TowerOfHanoi from './Training/Hanoi/hanoi';
 import NumberPuzzle from './Training/NumPuzzle/arrange';
 import Training from './Training/training';
+import FishermanGame from './Training/fisherman/fisherman'; // Import the Fisherman game
+import DinoRunGame from './Training/dinorun/dinorun'; // Import the DinoRun game
 import Footer from './Footer';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
           <Route path='/hanoi' element = {<TowerOfHanoi/>} />
           <Route path='/numberpuzzle' element = {<NumberPuzzle />} />
           <Route path='/training' element = {<Training />} />
+          <Route path='/catchfish' element = {<FishermanGame />} /> {/* Add the Fisherman game route */}
+          <Route path='/dinorun' element = {<DinoRunGame />} /> {/* Add the DinoRun game route */}
         </Routes>
         <Footer />
       </Router>
