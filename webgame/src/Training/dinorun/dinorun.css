@@ -1,7 +1,7 @@
 /* General container styling */
 .container-fluid {
     background: linear-gradient(135deg, #6E48AA, #4776E6);
-    min-height: 100vh;
+    /* min-height: 100vh; */
     color: #FFFFFF;
     font-family: 'Arial', sans-serif;
 }
