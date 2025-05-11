@@ -1,0 +1,50 @@
+/* General container styling */
+.container-fluid {
+    background: linear-gradient(135deg, #6E48AA, #4776E6);
+    /* min-height: 100vh; */
+    color: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Title styling */
+.dinorun-title {
+    font-size: 5rem;
+    color: #FFD700;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 0 10px #FFFFFF;
+}
+
+/* Paragraph and content styling */
+.p-2 {
+    color: rgb(225, 187, 245);
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+/* List styling */
+ul {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+ul li b {
+    color: #FFD700;
+}
+
+/* Button styling */
+.btn-warning {
+    background-color: #FFC107;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 0 0 3px #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #FFD54F;
+    color: #000;
+    transform: scale(1.05);
+}
