@@ -31,7 +31,7 @@ const DinoRunGame = () => {
             </p>
           </div>
           <a 
-            href="https://napoleanonsail.itch.io/fisherman" 
+            href="https://napoleanonsail.itch.io/dinorun" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="btn btn-warning m-2" 
