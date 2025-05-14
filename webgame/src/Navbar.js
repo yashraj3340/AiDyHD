@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import "./Navbar.css";
 export default function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 
@@ -29,7 +29,7 @@ export default function Navbar() {
     return (
         <div>
             <nav
-                className="navbar navbar-expand-sm navbar-dark"
+                className="navbar navbar-expand-md navbar-dark"
                 style={{
                     background: `linear-gradient(135deg, #6E48AA, #4776E6)`, // Gradient background
                     padding: '10px 20px',

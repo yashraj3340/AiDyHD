@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+  .landing-hero h1 { font-size: 2em; }
+  .landing-hero h2 { font-size: 1.2em; }
+  .landing-hero h3 { font-size: 1.5em; }
+  .landing-hero {
+    padding: 20px 0;
+  }
+
+  .feature-card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .get-started-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+}

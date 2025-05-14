@@ -5,3 +5,11 @@
 .text-green {
     color : #054f23;
 }
+
+@media (max-width: 576px) {
+  .form-control, .btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+}

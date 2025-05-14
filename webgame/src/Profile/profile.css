@@ -67,17 +67,114 @@
   animation: slideIn 0.8s ease-out;
 }
 
-/* Add hover effect for cards */
+/* General Typography */
+body {
+  font-family: "Poppins", sans-serif; /* Modern font */
+  color: #ffffff; /* White text for contrast */
+}
+
+h1, h2, h3 {
+  font-weight: 700; /* Bold headings */
+  text-shadow: 0 0 10px #cfff47; /* Electric Lime glow */
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Profile Image */
+.profile-page img {
+  border-radius: 50%;
+  border: 3px solid #cfff47; /* Electric Lime border */
+  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6); /* Glowing shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-page img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  box-shadow: 0 12px 30px rgba(207, 255, 71, 0.8); /* Stronger glow */
+}
+
+/* ADHD Score and Age */
+.age, .adhd-score {
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-shadow: 0 0 10px #cfff47; /* Glow effect */
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.age:hover, .adhd-score:hover {
+  transform: scale(1.2); /* Slight enlargement */
+  text-shadow: 0 0 20px #cfff47; /* Stronger glow */
+}
+
+/* Buttons */
+button, .btn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6); /* Glowing shadow */
+}
+
+/* Cards */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Smooth transition for hover effect */
+  border: 1px solid #cfff47; /* Electric Lime border */
+  border-radius: 10px;
+  background: rgba(68, 4, 85, 0.8); /* Semi-transparent purple */
+  backdrop-filter: blur(15px); /* Frosted glass effect */
 }
 
 .card-hover:hover {
-  transform: scale(1.05);
-  /* Slightly enlarge the card */
-  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6);
-  /* Add a glowing effect to the border */
-  border-color: #CFFF47;
-  /* Keep the Electric Lime border */
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0 8px 20px rgba(207, 255, 71, 0.6); /* Glowing shadow */
+}
+
+/* Popup */
+.popup-content {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333333; /* Dark text for readability */
+  background: #ffffff; /* White background */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .profile-page img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .card-hover {
+    margin-bottom: 20px;
+  }
+
+  .adhd-score, .age {
+    font-size: 1.2rem;
+  }
+
+  button, .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
 }

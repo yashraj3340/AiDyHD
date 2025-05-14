@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import "./login.css"; // Import CSS for login styles
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -58,7 +58,7 @@ export default function Login() {
       }}
     >
       <div
-        className="col-md-4 p-4"
+        className="col-10 col-sm-8 col-md-4 p-4 mx-auto"
         style={{
           backgroundColor: "#2D2D2D", // Deep Charcoal background
           borderRadius: "10px",

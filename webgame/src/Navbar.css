@@ -1,0 +1,14 @@
+@media (max-width: 576px) {
+  .navbar-toggler {
+    padding: 0.5rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0.5rem 0;
+  }
+}
