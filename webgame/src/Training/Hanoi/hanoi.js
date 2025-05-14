@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./hanoi.css";
 import moveSoundFile from "./move-sound.mp3";
-import Confetti from 'react-confetti';
+import Confetti from "react-confetti";
 import Tutorial from "./hanoitutorial";
 import { Link } from "react-router-dom";
-import congrats from '../../assets/congratulations.wav';
+import congrats from "../../assets/congratulations.wav";
 
 const App = () => {
   const [moveSound] = useState(new Audio(moveSoundFile));
@@ -22,7 +22,7 @@ const App = () => {
       row: 1,
       width: 5,
       color: "#2D2D2D", // Charcoal color
-      border: `2px solid #CFFF47` // Lime Green border
+      border: `2px solid #CFFF47`, // Lime Green border
     },
     {
       id: "Tile-2",
@@ -30,7 +30,7 @@ const App = () => {
       row: 2,
       width: 7,
       color: "#E0E0E0", // Silver color
-      border: `2px solid #CFFF47` // Lime Green border
+      border: `2px solid #CFFF47`, // Lime Green border
     },
     {
       id: "Tile-3",
@@ -38,7 +38,7 @@ const App = () => {
       row: 3,
       width: 9,
       color: "#2D2D2D", // Charcoal color
-      border: `2px solid #CFFF47` // Lime Green border
+      border: `2px solid #CFFF47`, // Lime Green border
     },
     {
       id: "Tile-4",
@@ -46,8 +46,8 @@ const App = () => {
       row: 4,
       width: 11,
       color: "#E0E0E0", // Silver color
-      border: `2px solid #CFFF47` // Lime Green border
-    }
+      border: `2px solid #CFFF47`, // Lime Green border
+    },
   ]);
 
   const contentRef = useRef(null);
@@ -60,7 +60,7 @@ const App = () => {
 
   useEffect(() => {
     if (startGame && contentRef.current) {
-      contentRef.current.scrollIntoView({ behavior: 'smooth' });
+      contentRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [startGame]);
 
@@ -76,7 +76,7 @@ const App = () => {
         row: 1,
         width: 5,
         color: "#2D2D2D", // Charcoal color
-        border: `2px solid #CFFF47` // Lime Green border
+        border: `2px solid #CFFF47`, // Lime Green border
       },
       {
         id: "Tile-2",
@@ -84,7 +84,7 @@ const App = () => {
         row: 2,
         width: 7,
         color: "#E0E0E0", // Silver color
-        border: `2px solid #CFFF47` // Lime Green border
+        border: `2px solid #CFFF47`, // Lime Green border
       },
       {
         id: "Tile-3",
@@ -92,7 +92,7 @@ const App = () => {
         row: 3,
         width: 9,
         color: "#2D2D2D", // Charcoal color
-        border: `2px solid #CFFF47` // Lime Green border
+        border: `2px solid #CFFF47`, // Lime Green border
       },
       {
         id: "Tile-4",
@@ -100,8 +100,8 @@ const App = () => {
         row: 4,
         width: 11,
         color: "#E0E0E0", // Silver color
-        border: `2px solid #CFFF47` // Lime Green border
-      }
+        border: `2px solid #CFFF47`, // Lime Green border
+      },
     ]);
   }
 
@@ -126,7 +126,11 @@ const App = () => {
   };
 
   const handleDrop = (ev) => {
+    if (!dragId) return;
+
     const dragTile = tiles.find((tile) => tile.id === dragId);
+    if (!dragTile) return;
+
     const dropColumn = ev.currentTarget.id;
 
     const dropColumnTopTile = tiles
@@ -141,12 +145,12 @@ const App = () => {
           setMoveCount(moveCount + 1);
           moveSound.play();
         }
-
         return tile;
       });
     }
 
     setTiles(newTileState);
+    setDragId("");
     moveSound.play();
   };
 
@@ -165,7 +169,7 @@ const App = () => {
     } else {
       clearInterval(interval);
       winning.play();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     return () => clearInterval(interval);
   }, [winCondition, timer]);
@@ -173,10 +177,10 @@ const App = () => {
   function sendDatatoserver() {
     const sendData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/hanoi', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8000/hanoi", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             moves: moveCount,
@@ -185,7 +189,7 @@ const App = () => {
         });
         const responseData = await response.json();
       } catch (error) {
-        console.error('Error sending data:', error);
+        console.error("Error sending data:", error);
       }
     };
     sendData();
@@ -199,163 +203,268 @@ const App = () => {
 
   return (
     <>
-      <div className="container-fluid" style={{ background: 'linear-gradient(135deg, #6E48AA, #4776E6)', minHeight: '100vh' }}>
+      <div
+        className="container-fluid"
+        style={{
+          background: "linear-gradient(135deg, #6E48AA, #4776E6)",
+          minHeight: "100vh",
+        }}
+      >
         <div className="row p-5">
           <hr style={{ color: `white` }} />
-          <span className="hanoi-title" style={{ fontSize: `5em`, color: `rgb(245, 187, 245)`, fontWeight: `500` }}>TOWER OF HANOI</span>
+          <span
+            className="hanoi-title"
+            style={{
+              fontSize: `5em`,
+              color: `rgb(245, 187, 245)`,
+              fontWeight: `500`,
+            }}
+          >
+            TOWER OF HANOI
+          </span>
           <hr style={{ color: "white" }} />
           <div className="col-md-9">
-            <div className="p-2 m-2" style={{ color: `rgb(225, 187, 245)`, fontSize: `1.2em` }}>
-              Tower of Hanoi is a classic mathematical puzzle game that originated in the 19th century.
-              The game consists of three pegs and a number of disks of different sizes, which can slide onto any peg.
-              The game starts with all the disks stacked in ascending order of size on one peg, typically the leftmost one,
-              and the objective is to move the entire stack to another peg, following the rules above.
-              <br /><br />
-              Benefits of this game for individuals with ADHD :
-              <br /><br />
-              🌟 <span className="px-2" style={{ fontSize: `1.15em`, textShadow: `0 0 2px #fff`, color: `yellow` }}>Attention</span> <br />
-              🌟 <span className="px-2" style={{ fontSize: `1.15em`, textShadow: `0 0 2px #fff`, color: `yellow` }}>Concentration</span> <br />
-              🌟 <span className="px-2" style={{ fontSize: `1.15em`, textShadow: `0 0 2px #fff`, color: `yellow` }}>Planning</span> <br />
-              🌟 <span className="px-2" style={{ fontSize: `1.15em`, textShadow: `0 0 2px #fff`, color: `yellow` }}>Problem-Solving Skills</span> <br />
+            <div
+              className="p-2 m-2"
+              style={{ color: `rgb(225, 187, 245)`, fontSize: `1.2em` }}
+            >
+              Tower of Hanoi is a classic mathematical puzzle game that
+              originated in the 19th century. The game consists of three pegs
+              and a number of disks of different sizes, which can slide onto any
+              peg. The game starts with all the disks stacked in ascending order
+              of size on one peg, typically the leftmost one, and the objective
+              is to move the entire stack to another peg, following the rules
+              above.
               <br />
-              However, as with any activity, its suitability may vary from person to
-              person. Some individuals with ADHD may find it engaging and enjoyable, while others may struggle to maintain
-              focus or interest due to its repetitive nature.
+              <br />
+              Benefits of this game for individuals with ADHD :
+              <br />
+              <br />
+              🌟{" "}
+              <span
+                className="px-2"
+                style={{
+                  fontSize: `1.15em`,
+                  textShadow: `0 0 2px #fff`,
+                  color: `yellow`,
+                }}
+              >
+                Attention
+              </span>{" "}
+              <br />
+              🌟{" "}
+              <span
+                className="px-2"
+                style={{
+                  fontSize: `1.15em`,
+                  textShadow: `0 0 2px #fff`,
+                  color: `yellow`,
+                }}
+              >
+                Concentration
+              </span>{" "}
+              <br />
+              🌟{" "}
+              <span
+                className="px-2"
+                style={{
+                  fontSize: `1.15em`,
+                  textShadow: `0 0 2px #fff`,
+                  color: `yellow`,
+                }}
+              >
+                Planning
+              </span>{" "}
+              <br />
+              🌟{" "}
+              <span
+                className="px-2"
+                style={{
+                  fontSize: `1.15em`,
+                  textShadow: `0 0 2px #fff`,
+                  color: `yellow`,
+                }}
+              >
+                Problem-Solving Skills
+              </span>{" "}
+              <br />
+              <br />
+              However, as with any activity, its suitability may vary from
+              person to person. Some individuals with ADHD may find it engaging
+              and enjoyable, while others may struggle to maintain focus or
+              interest due to its repetitive nature.
             </div>
-            <button className="btn btn-warning m-2" onClick={handleStart} style={{ fontSize: `1.2em` }}>{startGame ? 'RESTART GAME' : 'START GAME'}</button>
-            <button className="btn btn-warning m-2" onClick={handleClose} style={{ fontSize: `1.2em` }}>SEE TUTORIAL</button>
+            <button
+              className="btn btn-warning m-2"
+              onClick={handleStart}
+              style={{ fontSize: `1.2em` }}
+            >
+              {startGame ? "RESTART GAME" : "START GAME"}
+            </button>
+            <button
+              className="btn btn-warning m-2"
+              onClick={handleClose}
+              style={{ fontSize: `1.2em` }}
+            >
+              SEE TUTORIAL
+            </button>
           </div>
         </div>
         {!closeTut && <Tutorial onClose={handleClose} />}
-        {startGame && <div className="content p-2" ref={contentRef}>
-          <div
-            className="column-container"
-            id={1}
-            onDragOver={(ev) => ev.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <div className="center-bar" />
-            {column1Tiles
-              .sort((a, b) => a.width - b.width)
-              .map((tile, index) => {
-                const tileCount = column1Tiles.length;
-                const tileStyles = {
-                  width: `${tile.width}em`,
-                  backgroundColor: tile.color,
-                  border: tile.border,
-                  transform: `translateZ(${index * 2}px)`,
-                  transition: "transform 0.5s ease"
-                };
-                tileStyles.marginTop =
-                  index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
-                return (
-                  <div
-                    {...tile}
-                    className="tile"
-                    draggable
-                    key={`column-1-${tile.id}`}
-                    onDragOver={(ev) => ev.preventDefault()}
-                    onDragStart={handleDrag}
-                    style={tileStyles}
-                  />
-                );
-              })}
+        {startGame && (
+          <div className="content p-2" ref={contentRef}>
+            <div
+              className="column-container"
+              id={1}
+              onDragOver={(ev) => ev.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <div className="center-bar" />
+              {column1Tiles
+                .sort((a, b) => a.width - b.width)
+                .map((tile, index) => {
+                  const tileCount = column1Tiles.length;
+                  const tileStyles = {
+                    width: `${tile.width}em`,
+                    backgroundColor: tile.color,
+                    border: tile.border,
+                    transform: `translateZ(${index * 2}px)`,
+                    transition: "transform 0.5s ease",
+                  };
+                  tileStyles.marginTop =
+                    index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
+                  return (
+                    <div
+                      {...tile}
+                      className="tile"
+                      draggable
+                      key={`column-1-${tile.id}`}
+                      onDragOver={(ev) => ev.preventDefault()}
+                      onDragStart={handleDrag}
+                      style={tileStyles}
+                    />
+                  );
+                })}
+            </div>
+            <div
+              className="column-container"
+              id={2}
+              onDragOver={(ev) => ev.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <div className="center-bar" />
+              {column2Tiles
+                .sort((a, b) => a.width - b.width)
+                .map((tile, index) => {
+                  const tileCount = column2Tiles.length;
+                  const tileStyles = {
+                    width: `${tile.width}em`,
+                    backgroundColor: tile.color,
+                    border: tile.border,
+                    transform: `translateZ(${index * 2}px)`,
+                    transition: "transform 0.5s ease",
+                  };
+                  tileStyles.marginTop =
+                    index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
+                  return (
+                    <div
+                      {...tile}
+                      className="tile"
+                      draggable
+                      key={`column-2-${tile.id}`}
+                      onDragOver={(ev) => ev.preventDefault()}
+                      onDragStart={handleDrag}
+                      style={tileStyles}
+                    />
+                  );
+                })}
+            </div>
+            <div
+              className="column-container"
+              id={3}
+              onDragOver={(ev) => ev.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <div className="center-bar" />
+              {column3Tiles
+                .sort((a, b) => a.width - b.width)
+                .map((tile, index) => {
+                  const tileCount = column3Tiles.length;
+                  const tileStyles = {
+                    width: `${tile.width}em`,
+                    backgroundColor: tile.color,
+                    border: tile.border,
+                    transform: `translateZ(${index * 2}px)`,
+                    transition: "transform 0.5s ease",
+                  };
+                  tileStyles.marginTop =
+                    index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
+                  return (
+                    <div
+                      {...tile}
+                      className="tile"
+                      draggable
+                      key={`column-3-${tile.id}`}
+                      onDragOver={(ev) => ev.preventDefault()}
+                      onDragStart={handleDrag}
+                      style={tileStyles}
+                    />
+                  );
+                })}
+            </div>
           </div>
-          <div
-            className="column-container"
-            id={2}
-            onDragOver={(ev) => ev.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <div className="center-bar" />
-            {column2Tiles
-              .sort((a, b) => a.width - b.width)
-              .map((tile, index) => {
-                const tileCount = column2Tiles.length;
-                const tileStyles = {
-                  width: `${tile.width}em`,
-                  backgroundColor: tile.color,
-                  border: tile.border,
-                  transform: `translateZ(${index * 2}px)`,
-                  transition: "transform 0.5s ease"
-                };
-                tileStyles.marginTop =
-                  index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
-                return (
-                  <div
-                    {...tile}
-                    className="tile"
-                    draggable
-                    key={`column-2-${tile.id}`}
-                    onDragOver={(ev) => ev.preventDefault()}
-                    onDragStart={handleDrag}
-                    style={tileStyles}
-                  />
-                );
-              })}
-          </div>
-          <div
-            className="column-container"
-            id={3}
-            onDragOver={(ev) => ev.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <div className="center-bar" />
-            {column3Tiles
-              .sort((a, b) => a.width - b.width)
-              .map((tile, index) => {
-                const tileCount = column3Tiles.length;
-                const tileStyles = {
-                  width: `${tile.width}em`,
-                  backgroundColor: tile.color,
-                  border: tile.border,
-                  transform: `translateZ(${index * 2}px)`,
-                  transition: "transform 0.5s ease"
-                };
-                tileStyles.marginTop =
-                  index === 0 ? `calc(65vh - ${tileCount * 40 + 20}px)` : "0";
-                return (
-                  <div
-                    {...tile}
-                    className="tile"
-                    draggable
-                    key={`column-3-${tile.id}`}
-                    onDragOver={(ev) => ev.preventDefault()}
-                    onDragStart={handleDrag}
-                    style={tileStyles}
-                  />
-                );
-              })}
-          </div>
-        </div>}
+        )}
         {winCondition && (
           <div className="overlay">
             <Confetti />
             <div className="win-message">
               CONGRATULATIONS!
               <div className="win-subtitle">
-                You did it in <span className="win-number">{moveCount}</span> moves
+                You did it in <span className="win-number">{moveCount}</span>{" "}
+                moves
               </div>
               <div className="win-subtitle" style={{ fontSize: `0.5em` }}>
-                The ideal number of moves to complete this game is <b>15</b> moves. <br /> Kudos to you, if you could do this! <br /><br />
-                A simple game as this, with 4 tiles, is a test of a person's <b>attention span</b> and <b>planning ability</b>.
+                The ideal number of moves to complete this game is <b>15</b>{" "}
+                moves. <br /> Kudos to you, if you could do this! <br />
+                <br />A simple game as this, with 4 tiles, is a test of a
+                person's <b>attention span</b> and <b>planning ability</b>.
               </div>
               <div className="win-subtitle">
-                <button className="btn btn-warning btn-lg" onClick={restartGame}> Play Again </button>
-                <Link to='/profile' className="btn btn-warning btn-lg">Go to Profile</Link>
+                <button
+                  className="btn btn-warning btn-lg"
+                  onClick={restartGame}
+                >
+                  {" "}
+                  Play Again{" "}
+                </button>
+                <Link to="/profile" className="btn btn-warning btn-lg">
+                  Go to Profile
+                </Link>
               </div>
             </div>
           </div>
         )}
-        {startGame && <div className="row">
-          <div className="col-md-1"></div>
-          <div className="col-md-5">
-            <button className="btn btn-warning btn-lg my-3" style={{ cursor: `default`, width: '100%' }}>Move Count : {moveCount}</button>
+        {startGame && (
+          <div className="row">
+            <div className="col-md-1"></div>
+            <div className="col-md-5">
+              <button
+                className="btn btn-warning btn-lg my-3"
+                style={{ cursor: `default`, width: "100%" }}
+              >
+                Move Count : {moveCount}
+              </button>
+            </div>
+            <div className="col-md-5">
+              <button
+                className="btn btn-warning btn-lg my-3"
+                style={{ cursor: `default`, width: `100%` }}
+              >
+                Time: {timer} seconds
+              </button>
+            </div>
           </div>
-          <div className="col-md-5">
-            <button className="btn btn-warning btn-lg my-3" style={{ cursor: `default`, width: `100%` }}>Time: {timer} seconds</button>
-          </div>
-        </div>}
+        )}
       </div>
     </>
   );
