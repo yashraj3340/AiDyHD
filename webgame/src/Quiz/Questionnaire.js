@@ -22,17 +22,25 @@ class Questionnaire extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    this.checkAnswer();
-    this.handleNextQuestion();
+    if (this.checkAnswer()) {
+      this.handleNextQuestion();
+    }
   };
 
   checkAnswer = () => {
-    const { questionBank, currentQuestion, selectedOption, totalPoints } = this.state;
-    const selectedPoints = questionBank[currentQuestion].options.find(
+    const { questionBank, currentQuestion, selectedOption, totalPoints } =
+      this.state;
+    const selected = questionBank[currentQuestion].options.find(
       (option) => option.value === selectedOption
-    ).points;
-    this.setState((prevState) => ({ totalPoints: prevState.totalPoints + selectedPoints }));
-	// console.log(totalPoints);
+    );
+    if (!selected) {
+      alert("Please select an option before submitting.");
+      return false;
+    }
+    this.setState((prevState) => ({
+      totalPoints: prevState.totalPoints + selected.points,
+    }));
+    return true;
   };
 
   handleNextQuestion = () => {
@@ -50,8 +58,13 @@ class Questionnaire extends Component {
   };
 
   render() {
-    const { questionBank, currentQuestion, selectedOption, quizEnd, totalPoints } =
-      this.state;
+    const {
+      questionBank,
+      currentQuestion,
+      selectedOption,
+      quizEnd,
+      totalPoints,
+    } = this.state;
     return (
       <div className="App">
         {!quizEnd ? (

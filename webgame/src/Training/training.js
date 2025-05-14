@@ -62,7 +62,7 @@ export default function Training() {
           >
             This might just be your most favorite place or your sworn enemy!{" "}
             <br />
-            <br /> The training center consists of 4 carefully picked and
+            <br /> The training center consists of 6 carefully picked and
             curated according <br /> to the needs of individuals with ADHD, to
             ensure their progress and <br /> betterment in their daily life.
           </div>

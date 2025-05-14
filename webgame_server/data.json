@@ -51,9 +51,9 @@
     "memorywrong": 0,
     "memorytime": 0,
     "hanoimoves": 0,
-    "hanoitime": 0,
+    "hanoitime": 2,
     "numberpuzzlemoves": 0,
-    "numberpuzzletime": 0,
+    "numberpuzzletime": 1,
     "eightqueen": 0
   },
   "test": {
@@ -66,5 +66,16 @@
     "numberpuzzlemoves": 0,
     "numberpuzzletime": 0,
     "eightqueen": 0
+  },
+  "Atulya": {
+    "score": 0,
+    "memoryright": 8,
+    "memorywrong": 12,
+    "memorytime": 47,
+    "hanoimoves": 0,
+    "hanoitime": 0,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 3,
+    "eightqueen": 7
   }
 }
