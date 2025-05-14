@@ -54,7 +54,9 @@ The following games are utilized in this project:
 2. **Tower of Hanoi**: A mathematical puzzle where players must move a stack of disks from one rod to another, following specific rules. This game challenges spatial reasoning and planning skills.
 3. **Memory Matching**: A classic memory card game where players match pairs of cards by remembering their locations on a grid. This game challenges working memory and attention to detail.
 4. **1-15 Number Puzzle**: Also known as the sliding puzzle, players rearrange numbered tiles on a grid to form a sequential order. This game promotes problem-solving skills and concentration.
-
+5. **Dinorun**: An endless runner game where the player controls a dinosaur that must jump over obstacles to survive. This game assesses reaction time, sustained attention, and impulse control.
+6. **Fisherman**: A timing-based game where the player must catch fish with precise timing. This game helps evaluate attention span, motor coordination, and response accuracy.
+   
 ## Future Improvements
 
 - Integration of a more extensive questionnaire to gather detailed information about ADHD symptoms and severity.
