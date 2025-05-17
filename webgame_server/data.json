@@ -77,5 +77,27 @@
     "numberpuzzlemoves": 0,
     "numberpuzzletime": 3,
     "eightqueen": 7
+  },
+  "xyz": {
+    "score": 0,
+    "memoryright": 0,
+    "memorywrong": 0,
+    "memorytime": 9,
+    "hanoimoves": 0,
+    "hanoitime": 2,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 0,
+    "eightqueen": 0
+  },
+  "abcd": {
+    "score": 0,
+    "memoryright": 8,
+    "memorywrong": 14,
+    "memorytime": 112,
+    "hanoimoves": 29,
+    "hanoitime": 204,
+    "numberpuzzlemoves": 0,
+    "numberpuzzletime": 1,
+    "eightqueen": 8
   }
 }

@@ -3,7 +3,7 @@ import "./training.css";
 import { Link } from "react-router-dom";
 
 export default function Training() {
-  const [hoveredCard, setHoveredCard] = useState(null); // Track which card is hovered
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const handleFlip = (event) => {
     const target = event.currentTarget;
@@ -17,26 +17,24 @@ export default function Training() {
     });
   };
 
-  const getCardStyle = (cardType, isHovered) => {
-    return {
-      background: cardType === "charcoal" ? "#2D2D2D" : "#E0E0E0", // Charcoal or Silver
-      color: cardType === "charcoal" ? "#FFFFFF" : "#333333", // White or Charcoal text
-      borderRadius: "15px",
-      boxShadow: isHovered
-        ? "0 10px 25px rgba(207, 255, 71, 0.6)" // Glow effect on hover
-        : "0 6px 15px rgba(0, 0, 0, 0.2)", // Subtle shadow
-      transform: isHovered ? "scale(1.05)" : "scale(1)", // Slight zoom on hover
-      transition: "all 0.3s ease", // Smooth transition
-      margin: "20px", // Equal spacing between cards
-    };
-  };
+  const getCardStyle = (cardType, isHovered) => ({
+    background: cardType === "charcoal" ? "#2D2D2D" : "#E0E0E0",
+    color: cardType === "charcoal" ? "#FFFFFF" : "#333333",
+    borderRadius: "15px",
+    boxShadow: isHovered
+      ? "0 10px 25px rgba(207, 255, 71, 0.6)"
+      : "0 6px 15px rgba(0, 0, 0, 0.2)",
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    transition: "all 0.3s ease",
+    margin: "20px",
+  });
 
   const getButtonStyle = () => ({
     fontWeight: "500",
-    backgroundColor: "#CFFF47", // Lime Green
-    color: "#000000", // Black text for contrast
+    backgroundColor: "#CFFF47",
+    color: "#000000",
     border: "none",
-    transition: "background-color 0.3s ease", // Smooth hover effect
+    transition: "background-color 0.3s ease",
   });
 
   return (
@@ -49,7 +47,7 @@ export default function Training() {
           <div
             className="text-center hanoi-title"
             style={{
-              fontSize: `4.25em`,
+              fontSize: `4.5em`, // Increased font size for the title
               color: `#FFFFFF`,
               textShadow: "0 0 10px #CFFF47",
             }}
@@ -58,17 +56,17 @@ export default function Training() {
           </div>
           <div
             className="text-center mt-5"
-            style={{ color: `#FFFFFF`, fontSize: `1.25em` }}
+            style={{ color: `#FFFFFF`, fontSize: `1.5em` }} // Increased font size for the description
           >
             This might just be your most favorite place or your sworn enemy!{" "}
             <br />
             <br /> The training center consists of 6 carefully picked and
-            curated according <br /> to the needs of individuals with ADHD, to
-            ensure their progress and <br /> betterment in their daily life.
+            curated games according to the needs of individuals with ADHD, to
+            ensure their progress and betterment in their daily life.
           </div>
           <div
             className="text-center mt-5"
-            style={{ color: `#FFFFFF`, fontSize: `1.25em` }}
+            style={{ color: `#FFFFFF`, fontSize: `1.5em` }} // Increased font size for the call-to-action
           >
             Click on any game to get started with your journey!
             <br />
@@ -79,11 +77,47 @@ export default function Training() {
           </div>
         </div>
 
+        {/* ADHD Levels Information */}
+        <div
+          className="row justify-content-center pt-5"
+          style={{
+            color: "#FFFFFF",
+            fontSize: "1.75em", // Increased font size for the ADHD Levels section
+            lineHeight: "2", // Adjusted line height for better readability
+            padding: "20px 50px", // Added padding for spacing
+          }}
+        >
+          <p
+            className="text-center"
+            style={{
+              fontSize: "1.9em", // Slightly larger font size for the SNAP-IV heading
+              fontWeight: "bold",
+              textShadow: "0 0 10px #CFFF47",
+              marginBottom: "20px",
+            }}
+          >
+            ADHD Levels
+          </p>
+          <p className="text-center" style={{ fontSize: "1.4em", marginTop: "20px" }}>
+            <b style={{ color: "#CFFF47" }}>Easy Games:</b> Designed for individuals with
+            low-level ADHD, focusing on improving attention and memory.
+          </p>
+          <p className="text-center" style={{ fontSize: "1.4em" }}>
+            <b style={{ color: "#CFFF47" }}>Medium Games:</b> Suitable for mid-level ADHD,
+            targeting planning, organization, and problem-solving skills.
+          </p>
+          <p className="text-center" style={{ fontSize: "1.4em" }}>
+            <b style={{ color: "#CFFF47" }}>Hard Games:</b> For high-level ADHD,
+            challenging cognitive flexibility, impulse control, and advanced
+            problem-solving.
+          </p>
+        </div>
+
         {/* Easy Games */}
         <div className="row justify-content-center pt-5">
           <div
             className="text-center"
-            style={{ color: "#FFFFFF", fontSize: "2em", marginBottom: "20px" }}
+            style={{ color: "#FFFFFF", fontSize: "2em", marginBottom: "20px" }} // Increased font size for the Easy Games heading
           >
             Easy Games :
           </div>
@@ -97,29 +131,23 @@ export default function Training() {
           >
             <div className="front">
               <div className="row">
-                <div style={{ fontSize: `3em` }}>🀧𓍢ִ໋🀦</div>
-                <div>CARD FLIP GAME</div>
+                <div style={{ fontSize: `3em` }}>🀧𓍢ִ໋🀦</div> {/* Adjusted icon size */}
+                <div style={{ fontSize: `1.5em` }}>CARD FLIP GAME</div>
               </div>
             </div>
             <div className="back">
               <div className="row p-4">
                 <div className="mb-2">
-                  GAME OVERVIEW{" "}
-                  <span style={{ fontSize: `1.75em` }}>🀧𓍢ִ໋🀦</span>
+                  GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>🀧𓍢ִ໋🀦</span> {/* Adjusted font size */}
                 </div>
-                <div style={{ fontSize: `0.5em` }}>
-                  This is a classic cognitive exercise where you have to match
-                  cards by remembering their location on the grid. You can only
-                  view two cards at the same time. This game challenges your
-                  working memory, attention to detail and visual processing
-                  skills.
+                <div style={{ fontSize: `0.5em` }}> {/* Adjusted font size */}
+                  This is a classic cognitive exercise where you have to match cards by
+                  remembering their location on the grid. You can only view two cards at
+                  the same time. This game challenges your working memory, attention to
+                  detail, and visual processing skills.
                 </div>
                 <div className="mt-2">
-                  <Link
-                    to="/memorygame"
-                    className="btn"
-                    style={getButtonStyle()}
-                  >
+                  <Link to="/memorygame" className="btn" style={getButtonStyle()}>
                     Let's Play
                   </Link>
                 </div>
@@ -136,19 +164,19 @@ export default function Training() {
           >
             <div className="front">
               <div className="row p-3">
-                <div style={{ fontSize: `3em` }}>🦖</div>
-                <div>DINO RUN GAME</div>
+                <div style={{ fontSize: `3em` }}>🦖</div> {/* Adjusted icon size */}
+                <div style={{ fontSize: `1.5em` }}>DINO RUN GAME</div>
               </div>
             </div>
             <div className="back">
               <div className="row p-4">
                 <div className="mb-2">
-                  GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>🦖</span>
+                  GAME OVERVIEW <span style={{ fontSize: `1.75em` }}>🦖</span> {/* Adjusted font size */}
                 </div>
-                <div style={{ fontSize: `0.5em` }}>
-                  Dino Run is an endless runner game where you control a
-                  dinosaur to avoid obstacles and collect points. This game
-                  enhances reflexes, hand-eye coordination, and focus.
+                <div style={{ fontSize: `0.5em` }}> {/* Adjusted font size */}
+                  Dino Run is an endless runner game where you control a dinosaur to
+                  avoid obstacles and collect points. This game enhances reflexes,
+                  hand-eye coordination, and focus.
                 </div>
                 <div className="mt-2">
                   <Link to="/dinorun" className="btn" style={getButtonStyle()}>
@@ -179,7 +207,7 @@ export default function Training() {
             <div className="front">
               <div className="row">
                 <div style={{ fontSize: `3em` }}>🛕</div>
-                <div>TOWER OF HANOI</div>
+                <div style={{ fontSize: `1.5em` }}>TOWER OF HANOI</div>
               </div>
             </div>
             <div className="back">
@@ -213,7 +241,7 @@ export default function Training() {
             <div className="front">
               <div className="row p-3">
                 <div style={{ fontSize: `3em` }}>♛</div>
-                <div>CHESS & QUEENS GAME</div>
+                <div style={{ fontSize: `1.5em` }}>CHESS & QUEENS GAME</div>
               </div>
             </div>
             <div className="back">
@@ -261,7 +289,7 @@ export default function Training() {
             <div className="front">
               <div className="row p-3">
                 <div style={{ fontSize: `3em` }}>🔢</div>
-                <div>NUMBER PUZZLE GAME</div>
+                <div style={{ fontSize: `1.5em` }}>NUMBER PUZZLE GAME</div>
               </div>
             </div>
             <div className="back">
@@ -299,7 +327,7 @@ export default function Training() {
             <div className="front">
               <div className="row p-3">
                 <div style={{ fontSize: `3em` }}>🐟</div>
-                <div>The Fisherman Game</div>
+                <div style={{ fontSize: `1.5em` }}>THE FISHERMAN GAME</div>
               </div>
             </div>
             <div className="back">
